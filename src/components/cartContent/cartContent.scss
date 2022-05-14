@@ -1,0 +1,9 @@
+.cart-content {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  &_empty {
+    font-size: 16px;
+    font-weight: bold;
+  }
+}

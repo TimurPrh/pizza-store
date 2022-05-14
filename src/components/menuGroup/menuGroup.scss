@@ -1,0 +1,22 @@
+.menu-group {
+  margin-top: 10px;
+  &__header {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  &__list {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+
+    align-items: center;
+    .menu-item {
+      margin-bottom: 20px;
+      // margin-right: 3.33%;
+      margin-right: calc((100% - 4 * 22.5%) / 3);
+      &:nth-child(4n) {
+        margin-right: 0;
+      }
+    }
+  }
+}
