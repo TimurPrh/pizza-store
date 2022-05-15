@@ -1,15 +1,10 @@
 import { combineReducers, createStore } from "redux"
-import { countReducer } from "./countStore"
-import { usersReducer } from "./userStore"
+import { orderingReducer } from "./orderingStore"
 import { cartReducer } from "./cartStore"
 
-// const reducer = combineReducers({
-//   countReducer,
-//   usersReducer
-// })
-
 const reducer = combineReducers({
-  cartReducer
+  cartReducer,
+  orderingReducer
 })
 
 export const store = createStore(reducer)

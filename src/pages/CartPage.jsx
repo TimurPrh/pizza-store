@@ -5,12 +5,10 @@ import Header from '../components/header/Header';
 const CartPage = () => {
 
   return (
-    <div className="App">
+    <>
       <Header />
-      <div className='container'>
-        <CartContent />
-      </div>
-    </div>
+      <CartContent />
+    </>
   );
 };
 

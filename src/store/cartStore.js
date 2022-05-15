@@ -1,7 +1,3 @@
-// const initialState = {cart: [
-//   {count: 3, type: 'Пицца', id: 123, name: 'Ветчина и грибы', price: 300, img: '/assets/images/ham.jpeg', description: 'Ветчина, шампиньоны, увеличенная порция моцареллы, томатный соус'},
-//   {count: 4, type: 'Пицца', id: 122, name: 'Пепперони', price: 250, img: '/assets/images/pepper.jpeg', description: 'Пикантная пепперони, увеличенная порция моцареллы, томатный соус'}
-// ]}
 const initialState = {cart: []}
 
 const cartReducer = (state = initialState, action) => {
@@ -34,6 +30,8 @@ const cartReducer = (state = initialState, action) => {
       return {...state, cart: state.cart.filter(item => item.id !== action.payload)}
     case 'REMOVE_ALL_ITEMS':
       return {...state, cart: state.cart.filter(item => item.id !== action.payload)}
+    case 'CLEAR_CART':
+      return {...state, cart: []}
     default: 
       return state
   }
@@ -42,5 +40,6 @@ const cartReducer = (state = initialState, action) => {
 const addItemAction = (payload) => ({type: 'ADD_ITEM', payload})
 const removeItemAction = (payload) => ({type: 'REMOVE_ITEM', payload})
 const removeAllItemsAction = (payload) => ({type: 'REMOVE_ALL_ITEMS', payload})
+const clearCartAction = () => ({type: 'CLEAR_CART'})
 
-export {cartReducer, addItemAction, removeItemAction, removeAllItemsAction}
+export {cartReducer, addItemAction, removeItemAction, removeAllItemsAction, clearCartAction}
