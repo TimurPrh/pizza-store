@@ -26,9 +26,9 @@ const CartContent = () => {
           <div className='cart-content'>
             <div className="cart-content__left">
               <CartList />
+              <CartTotal />
             </div>
             <div className="cart-content__right">
-              <CartTotal />
               <CartOrder />
             </div>
           </div>

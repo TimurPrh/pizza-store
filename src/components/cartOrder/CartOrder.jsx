@@ -41,6 +41,7 @@ const CartOrder = () => {
           dispatch(resetStatusAction())
           dispatch(clearCartAction())
           navigate('/')
+          console.log('timeout!!!')
         }, 5000)
       }
       
@@ -55,7 +56,7 @@ const CartOrder = () => {
     return () => {
       window.clearTimeout(closeTimer)
     }
-  }, [])
+  }, [cart])
 
   return (
     <form ref={form} className='cart-order'>

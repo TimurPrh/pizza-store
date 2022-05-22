@@ -1,10 +1,17 @@
-const initialState = {cart: []}
+const initialState = {cart: [], sum: 0}
+
+const getSum = (arr) => {
+  return arr.reduce(
+    (previous, current) =>  previous + parseInt(current.price) * current.count, 0
+  );
+}
 
 const cartReducer = (state = initialState, action) => {
+  let sum
+  let newCart
   switch (action.type) {
     case 'ADD_ITEM': 
       const addIndex = state.cart.findIndex(item => item.id === action.payload.id)
-      let newCart
       if (addIndex === -1) {
         newCart = [...state.cart, {...action.payload, count: 1}]
       } else {
@@ -15,23 +22,33 @@ const cartReducer = (state = initialState, action) => {
           return item 
         })
       }
-      return {...state, cart: newCart}
+
+      sum = getSum(newCart)
+
+      return {cart: newCart, sum}
     case 'REMOVE_ITEM':
       const removeIndex = state.cart.findIndex(item => item.id === action.payload)
       if (state.cart[removeIndex].count > 1) {
-        const newCart = state.cart.map((item, i) => {
+        newCart = state.cart.map((item, i) => {
           if (i === removeIndex) {
             return {...item, count: item.count - 1}
           }
           return item 
         })
-        return {...state, cart: newCart}
+        // return {...state, cart: newCart}
+      } else {
+        newCart = state.cart.filter(item => item.id !== action.payload)
       }
-      return {...state, cart: state.cart.filter(item => item.id !== action.payload)}
+
+      sum = getSum(newCart)
+
+      return {cart: newCart, sum}
     case 'REMOVE_ALL_ITEMS':
-      return {...state, cart: state.cart.filter(item => item.id !== action.payload)}
+      newCart = state.cart.filter(item => item.id !== action.payload)
+      sum = getSum(newCart)
+      return {cart: newCart, sum}
     case 'CLEAR_CART':
-      return {...state, cart: []}
+      return {cart: [], sum: 0}
     default: 
       return state
   }

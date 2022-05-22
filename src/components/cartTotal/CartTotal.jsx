@@ -4,11 +4,7 @@ import './cartTotal.scss'
 
 const CartTotal = () => {
 
-  const cart = useSelector(state => state.cartReducer.cart)
-
-  const sum = cart.reduce(
-    (previous, current) =>  previous + parseInt(current.price) * current.count, 0
-  );
+  const {sum} = useSelector(state => state.cartReducer)
 
   return (
     <div className='cart-total'>
