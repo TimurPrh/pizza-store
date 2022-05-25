@@ -1,9 +1,18 @@
 const db = require("./db");
 
-async function getMultiple() {
+// CREATE TABLE menu (
+//   id int NOT NULL AUTO_INCREMENT,
+//   typeid int NOT NULL,
+//   name varchar(255) NOT NULL,
+//   description varchar(510),
+//   price int NOT NULL,
+//   img varchar(255) NOT NULL,
+//   PRIMARY KEY (id)
+// );
+
+async function getMenuItems() {
   const rows = await db.query(
-    `SELECT * 
-    FROM persons`
+    `SELECT * FROM menu`
   );
 
   return {
@@ -11,57 +20,57 @@ async function getMultiple() {
   };
 }
 
-async function create(programmingLanguage) {
+async function createMenuItem(menuItem) {
   const result = await db.query(
-    `INSERT INTO programming_languages 
-    (name, released_year, githut_rank, pypl_rank, tiobe_rank) 
+    `INSERT INTO menu 
+    (typeid, name, description, price, img) 
     VALUES 
-    ("${programmingLanguage.name}", ${programmingLanguage.released_year}, ${programmingLanguage.githut_rank}, ${programmingLanguage.pypl_rank}, ${programmingLanguage.tiobe_rank})`
+    ("${menuItem.typeid}", "${menuItem.name}", "${menuItem.description}", "${menuItem.price}", "${menuItem.img}")`
   );
 
-  let message = "Error in creating programming language";
+  let message = "Error in creating menu item";
 
   if (result.affectedRows) {
-    message = "Programming language created successfully";
+    message = "Menu item created successfully";
   }
 
   return { message };
 }
 
-async function update(id, programmingLanguage) {
+async function updateMenuItem(id, menuItem) {
   const result = await db.query(
-    `UPDATE programming_languages 
-    SET name="${programmingLanguage.name}", released_year=${programmingLanguage.released_year}, githut_rank=${programmingLanguage.githut_rank}, 
-    pypl_rank=${programmingLanguage.pypl_rank}, tiobe_rank=${programmingLanguage.tiobe_rank} 
+    `UPDATE menu 
+    SET typeid="${menuItem.typeid}", name=${menuItem.name}, description=${menuItem.description}, 
+    price=${menuItem.price}, img=${menuItem.img} 
     WHERE id=${id}`
   );
 
-  let message = "Error in updating programming language";
+  let message = "Error in updating menu item";
 
   if (result.affectedRows) {
-    message = "Programming language updated successfully";
+    message = "Menu item updated successfully";
   }
 
   return { message };
 }
 
-async function remove(id) {
+async function removeMenuItem(id) {
   const result = await db.query(
-    `DELETE FROM programming_languages WHERE id=${id}`
+    `DELETE FROM menu WHERE id=${id}`
   );
 
-  let message = "Error in deleting programming language";
+  let message = "Error in deleting menu item";
 
   if (result.affectedRows) {
-    message = "Programming language deleted successfully";
+    message = "Menu item deleted successfully";
   }
 
   return { message };
 }
 
 module.exports = {
-  getMultiple,
-  create,
-  update,
-  remove,
+  getMenuItems,
+  createMenuItem,
+  updateMenuItem,
+  removeMenuItem,
 };

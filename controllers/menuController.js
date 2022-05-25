@@ -1,73 +1,45 @@
-// const uuid = require('uuid')
-// const path = require('path')
+const uuid = require('uuid')
+const path = require('path')
 const ApiError = require('../error/ApiError')
 const db = require("../services/db");
+const { getMenuItems, removeMenuItem, createMenuItem, updateMenuItem } = require('../services/menu');
 
 class MenuController {
-  async getAll(req, res) {
-    const rows = await db.query(
-      `SELECT * FROM persons`
-    );
-  
-    return res.json(rows)
+  async getAll(req, res, next) {
+    try {
+      res.json(await getMenuItems());
+    } catch (e) {
+      next(ApiError.badRequest(e.message))
+    }
   }
 
   async create(req, res, next) {
-    async function createMenuItem(menuItem) {
-      const result = await db.query(
-        `INSERT INTO persons 
-        (LastName, FirstName, Age) 
-        VALUES 
-        ("${menuItem.LastName}", "${menuItem.FirstName}", "${menuItem.Age}")`
-      );
-    
-      let message = "Error in creating menu item";
-    
-      if (result.affectedRows) {
-        message = "Menu item created successfully";
-      }
-    
-      return { result };
-    }
-    
     try {
-      const menuItem = await createMenuItem(req.body)
+      let {typeid, name, description, price} = req.body
+      const {img} = req.files
 
-      return res.json(menuItem)
+      let fileName = uuid.v4() + ".jpg"
+      img.mv(path.resolve(__dirname, '..', 'public', fileName))
+
+      const reply = await createMenuItem({typeid, name, description, price, img: fileName})
+
+      return res.json(reply)
     } catch (e) {
       next(ApiError.badRequest(e.message))
     }
   }
 
   async change(req, res, next) {
-    async function updateMenuItem(id, menuItem) {
-      const result = await db.query(
-        `UPDATE persons 
-        SET name="${menuItem.LastName}", released_year=${menuItem.FirstName}, githut_rank=${menuItem.Age}
-        WHERE personid=${id}`
-      );
-    
-      let message = "Error in updating programming language";
-    
-      if (result.affectedRows) {
-        message = "Programming language updated successfully";
-      }
-    
-      return { message };
-    }
-
     try {
-      const {id} = req.params
-      const {favorite} = req.body
+      let {typeid, name, description, price} = req.body
+      const {img} = req.files
 
-      const todo = await Todos.findOne({ where: { id, userId: req.user.id } });
+      let fileName = uuid.v4() + ".jpg"
+      img.mv(path.resolve(__dirname, '..', 'public', fileName))
 
-      if (todo) {
-        todo.favorite = favorite;
-        await todo.save();
-      }
+      const reply = await updateMenuItem({typeid, name, description, price, img: fileName})
 
-      return res.json(todo)
+      return res.json(reply)
     } catch (e) {
       next(ApiError.badRequest(e.message))
     }
@@ -77,7 +49,7 @@ class MenuController {
     try {
       const {id} = req.params
 
-      const reply = await Todos.destroy({where: {id, userId: req.user.id}})
+      const reply = await removeMenuItem(id)
 
       return res.json(reply)
     } catch (e) {
