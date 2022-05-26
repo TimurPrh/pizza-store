@@ -35,4 +35,4 @@ const menuReducer = (state = initialState, action) => {
 
 const addMenuAction = (payload) => ({type: 'ADD_MENU', payload})
 
-export {menuReducer}
+export {menuReducer, addMenuAction}

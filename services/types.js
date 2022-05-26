@@ -1,9 +1,16 @@
-const db = require("../services/db");
+const db = require("./db");
 
 // CREATE TABLE types (
 //   id int NOT NULL AUTO_INCREMENT,
 //   type varchar(255) NOT NULL,
 //   name varchar(255) NOT NULL,
+//   PRIMARY KEY (id)
+// );
+
+// CREATE TABLE users (
+//   id int NOT NULL AUTO_INCREMENT,
+//   login varchar(255) NOT NULL UNIQUE,
+//   password varchar(255) NOT NULL,
 //   PRIMARY KEY (id)
 // );
 
@@ -18,7 +25,7 @@ async function getMenuGroupTypes() {
 async function createMenuGroupType(menuGroupType) {
   const result = await db.query(
     `INSERT INTO types 
-    (type, name) 
+    (type, name)
     VALUES 
     ("${menuGroupType.type}", "${menuGroupType.name}")`
   );
