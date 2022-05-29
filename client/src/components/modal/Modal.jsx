@@ -46,7 +46,7 @@ const Modal = ({type}) => {
         </>
       )
       break;
-  
+
     default:
       break;
   }

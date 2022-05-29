@@ -2,8 +2,8 @@ const db = require("./db");
 
 // CREATE TABLE types (
 //   id int NOT NULL AUTO_INCREMENT,
-//   type varchar(255) NOT NULL,
-//   name varchar(255) NOT NULL,
+//   type varchar(255) NOT NULL UNIQUE,
+//   name varchar(255) NOT NULL UNIQUE,
 //   PRIMARY KEY (id)
 // );
 
