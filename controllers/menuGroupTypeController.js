@@ -3,7 +3,7 @@ const { removeMenuGroupType, updateMenuGroupType, createMenuGroupType, getMenuGr
 
 
 class MenuController {
-  async getAll(req, res) {
+  async getAll(req, res, next) {
     try {
       res.json(await getMenuGroupTypes());
     } catch (e) {
