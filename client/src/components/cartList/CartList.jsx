@@ -22,7 +22,7 @@ const CartList = () => {
       {cart.map(item => 
         <div key={item.id} className='cart-item'>
           <div className='cart-item__img'>
-            <img src={item.img} alt={item.name} />
+            <img src={process.env.REACT_APP_API_URL + item.img} alt={item.name} />
           </div>
           <div className="cart-item__text">
             <div className="cart-item__header">

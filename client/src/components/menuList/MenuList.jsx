@@ -5,7 +5,7 @@ import './menuList.scss'
 
 const MenuList = () => {
   const {menu, types} = useSelector(state => state.menuReducer)
-
+  
   return (
     <div className='menu-list'>
       <div className='menu-list__header'>
@@ -14,7 +14,7 @@ const MenuList = () => {
       <div className='menu-list__content'>
         <div className='menu-list__menu-group'>
           {types.map(type => 
-            <MenuGroup key={type.id} type={type} items={menu.filter(item => item.type === type.name)}/>
+            <MenuGroup key={type.id} type={type} items={menu.filter(item => item.typeid === type.id)}/>
           )}
         </div>
       </div>

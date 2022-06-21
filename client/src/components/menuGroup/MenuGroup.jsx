@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
+import { useWindowSize } from '../../hooks/useWindowSize';
 import { setAnchorAction } from '../../store/positionStore';
 import MenuItem from '../menuItem/MenuItem';
 import './menuGroup.scss'
@@ -9,13 +10,15 @@ const MenuGroup = ({type, items}) => {
 
   const ref = useRef(null)
 
+  const size = useWindowSize()
+
   useEffect(() => {
     dispatch(setAnchorAction({
       id: type.id,
-      y: ref.current.getBoundingClientRect().y,
+      y: ref.current.offsetTop,
       height: ref.current.getBoundingClientRect().height
     }))
-  }, [ref])
+  }, [ref, size.width])
 
   return (
     <div className='menu-group' id={`type_${type.id}`}>

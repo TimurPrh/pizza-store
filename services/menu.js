@@ -20,6 +20,18 @@ async function getMenuItems() {
   };
 }
 
+async function getMenuItem(id) {
+  const rows = await db.query(
+    `SELECT * 
+    FROM menu
+    WHERE id=${id}`
+  );
+
+  return {
+    rows
+  };
+}
+
 async function createMenuItem(menuItem) {
   const result = await db.query(
     `INSERT INTO menu 
@@ -37,13 +49,23 @@ async function createMenuItem(menuItem) {
   return { message };
 }
 
-async function updateMenuItem(id, menuItem) {
-  const result = await db.query(
-    `UPDATE menu 
-    SET typeid="${menuItem.typeid}", name=${menuItem.name}, description=${menuItem.description}, 
-    price=${menuItem.price}, img=${menuItem.img} 
-    WHERE id=${id}`
-  );
+async function updateMenuItem(menuItem) {
+  let result
+  if (menuItem.img) {
+    result = await db.query(
+      `UPDATE menu 
+      SET typeid="${menuItem.typeid}", name="${menuItem.name}", description="${menuItem.description}", 
+      price="${menuItem.price}", img="${menuItem.img}"
+      WHERE id="${menuItem.id}"`
+    );
+  } else {
+    result = await db.query(
+      `UPDATE menu 
+      SET typeid="${menuItem.typeid}", name="${menuItem.name}", description="${menuItem.description}", 
+      price="${menuItem.price}"
+      WHERE id="${menuItem.id}"`
+    );
+  }
 
   let message = "Error in updating menu item";
 
@@ -65,11 +87,12 @@ async function removeMenuItem(id) {
     message = "Menu item deleted successfully";
   }
 
-  return { message };
+  return { result, message };
 }
 
 module.exports = {
   getMenuItems,
+  getMenuItem,
   createMenuItem,
   updateMenuItem,
   removeMenuItem,

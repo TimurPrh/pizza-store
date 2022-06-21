@@ -28,7 +28,7 @@ const MenuItem = ({item}) => {
     <div className='menu-item'>
       <div className='menu-item__top'>
         <div className='menu-item__img'>
-          <img src={item.img} alt={item.name} />
+          <img src={process.env.REACT_APP_API_URL + item.img} alt={item.name} />
         </div>
         <div className='menu-item__text'>
           <div className='menu-item__name'>

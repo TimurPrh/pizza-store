@@ -22,9 +22,9 @@ const AdminForm = ({addingForm, message, form}) => {
       console.groupEnd()
       form.current[0].value = availableTypes[typeIndex].name
       const offset = availableTypes.length
-      form.current[1 + offset].value = addingMenuItem.name
-      form.current[2 + offset].value = addingMenuItem.description
-      form.current[3 + offset].value = addingMenuItem.price
+      form.current[2 + offset].value = addingMenuItem.name
+      form.current[3 + offset].value = addingMenuItem.description
+      form.current[4 + offset].value = addingMenuItem.price
     }
   }, [addingStatus, addingType, addingMenuItem])
 
@@ -58,7 +58,13 @@ const AdminForm = ({addingForm, message, form}) => {
             type='button'
             onClick={() => setSelectedTypeVisible(prev => !prev)}
             className="admin-modal__input"
+            name='typeid'
             value={selectedType.name ? selectedType.name : 'Выберете тип'}>
+          </input>
+          <input
+            style={{display: 'none'}}
+            name='typeid'
+            value={selectedType.id ? selectedType.id : ''}>
           </input>
           <div 
             className={selectedTypeVisible ? 

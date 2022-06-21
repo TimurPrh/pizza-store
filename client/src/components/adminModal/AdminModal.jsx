@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeMenuType, deleteMenuType, postMenuTypes } from '../../http';
+import { changeMenuItem, changeMenuType, deleteMenuItem, deleteMenuType, postMenuItem, postMenuType } from '../../http';
 import { resetAdminStatusAction, setAdminDoneAction, setAdminErrorAction, setAdminLoadingAction } from '../../store/adminAddingStore';
 import AdminForm from '../adminForm/AdminForm';
 import './adminModal.scss'
@@ -9,7 +9,7 @@ const AdminModal = () => {
   const addingForm = useSelector(state => state.adminAddingReducer.form)
   const addingStatus = useSelector(state => state.adminAddingReducer.status)
   const addingType = useSelector(state => state.adminAddingReducer.type)
-  // const addingMenuItem = useSelector(state => state.adminAddingReducer.menuItem)
+  const addingMenuItem = useSelector(state => state.adminAddingReducer.menuItem)
   // const availableTypes = useSelector(state => state.adminAddingReducer.availableTypes)
 
   const modalRef = useRef(null)
@@ -35,7 +35,7 @@ const AdminModal = () => {
 
     dispatch(setAdminLoadingAction())
     try {
-      const res = await postMenuTypes({type, name})
+      const res = await postMenuType({type, name})
       if (res) {
         console.log('ok')
         console.log(res)
@@ -113,12 +113,9 @@ const AdminModal = () => {
     console.group('add menu')
     const formData = new FormData(form.current)
 
-    const name = formData.get('name')
-    const type = formData.get('type')
-
     dispatch(setAdminLoadingAction())
     try {
-      const res = await postMenuTypes({type, name})
+      const res = await postMenuItem(formData)
       if (res) {
         console.log('ok')
         console.log(res)
@@ -141,14 +138,15 @@ const AdminModal = () => {
     e.preventDefault()
 
     console.group('change type')
-    const formData = new FormData(form.current)
+    let formData = new FormData(form.current)
+    formData.set('id', addingMenuItem.id)
 
-    const name = formData.get('name')
-    const type = formData.get('type')
+    // const name = formData.get('name')
+    // const type = formData.get('type')
 
     dispatch(setAdminLoadingAction())
     try {
-      const res = await changeMenuType(addingType.id, {type, name})
+      const res = await changeMenuItem(formData)
       if (res) {
         console.log('ok')
         console.log(res)
@@ -169,10 +167,10 @@ const AdminModal = () => {
   const deleteMenu = async (e) => {
     e.preventDefault()
 
-    console.group('delete type')
+    console.group('delete menu')
     dispatch(setAdminLoadingAction())
     try {
-      const res = await deleteMenuType(addingType.id)
+      const res = await deleteMenuItem(addingMenuItem.id)
       if (res) {
         console.log('ok')
         console.log(res)

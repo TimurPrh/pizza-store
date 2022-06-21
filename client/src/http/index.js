@@ -6,7 +6,7 @@ const getMenuTypes = async () => {
   return await res.json();
 }
 
-const postMenuTypes = async (data) => {
+const postMenuType = async (data) => {
   const res = await fetch('http://localhost:5000/api/type', {
       method: 'POST',
       cache: 'no-cache',
@@ -57,14 +57,10 @@ const getMenuItems = async () => {
     return await res.json();
 }
 
-const postMenuItems = async (data) => {
+const postMenuItem = async (data) => {
     const res = await fetch('http://localhost:5000/api/menu', {
         method: 'POST',
-        cache: 'no-cache',
-        headers: {
-            'Content-Type': 'multipart/form-data'
-        },
-        body: JSON.stringify(data)
+        body: data
     });
     if (!res.ok) {
         throw new Error(`Could not fetch, status: ${res.status}`);
@@ -72,14 +68,10 @@ const postMenuItems = async (data) => {
     return await res.json();
   }
   
-  const changeMenItems = async (id, data) => {
-    const res = await fetch(`http://localhost:5000/api/menu/${id}`, {
+  const changeMenuItem = async (data) => {
+    const res = await fetch(`http://localhost:5000/api/menu`, {
         method: 'PUT',
-        cache: 'no-cache',
-        headers: {
-            'Content-Type': 'multipart/form-data'
-        },
-        body: JSON.stringify(data)
+        body: data
     });
     if (!res.ok) {
         throw new Error(`Could not fetch, status: ${res.status}`);
@@ -87,7 +79,7 @@ const postMenuItems = async (data) => {
     return await res.json();
   }
   
-  const deleteMenItems = async (id) => {
+  const deleteMenuItem = async (id) => {
     const res = await fetch(`http://localhost:5000/api/menu/${id}`, {
         method: 'DELETE',
         cache: 'no-cache',
@@ -118,12 +110,12 @@ const postMenuCart = async (data) => {
 
 export {
     getMenuTypes,
-    postMenuTypes,
+    postMenuType,
     changeMenuType,
     deleteMenuType,
     getMenuItems,
-    postMenuItems,
-    changeMenItems,
-    deleteMenItems,
+    postMenuItem,
+    changeMenuItem,
+    deleteMenuItem,
     postMenuCart
 }

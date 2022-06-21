@@ -7,7 +7,6 @@ const errorHandler = require('./middleware/errorHandlingMiddleware')
 const path = require('path');
 const { getMultiple } = require('./services/menu');
 
-
 const app = express()
 app.use(cors())
 app.use(express.json())

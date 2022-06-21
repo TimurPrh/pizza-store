@@ -10,14 +10,9 @@
     flex-wrap: wrap;
 
     align-items: center;
-    // .menu-item {
-    //   margin-bottom: 20px;
-    //   // margin-right: 3.33%;
-    //   margin-right: calc((100% - 4 * 22.5%) / 3);
-    //   &:nth-child(4n) {
-    //     margin-right: 0;
-    //   }
-    // }
+    @media (max-width: 575px) {
+      justify-content: center;
+    }
     .menu-item {
       margin-bottom: 20px;
       // margin-right: 3.33%;
@@ -42,6 +37,12 @@
       }
       @media (max-width: 575px) {
         margin-right: 0;
+        &:nth-child(2n) {
+          margin-right: 0;
+        }
+        &:nth-child(3n) {
+          margin-right: 0;
+        }
       }
     }
   }
