@@ -15,7 +15,7 @@
   transform: translate(-50%, -50%);
   width: 382px;
   min-height: 143px;
-  background: #F2F2F2;
+  background: var(--modal-bg-color);
   padding: 38px 38px 38px 38px;
   &__close {
       position: absolute;
@@ -23,7 +23,7 @@
       right: -40px;
       line-height: 21px;
       font-size: 41px;
-      color: rgba(1, 0, 2, .75);
+      color: var(--text-shade-75);
       cursor: pointer;
   }
   &__subtitle {
@@ -32,7 +32,7 @@
       font-size: 18px;
       line-height: 19px;
       text-align: center;
-      color: #0D0D0D;
+      color: var(--text-color);
   }
 
   &__desc {
@@ -42,6 +42,6 @@
       font-size: 14px;
       line-height: 14px;
       text-align: center;
-      color: #0D0D0D;
+      color: var(--text-color);
   }
 }

@@ -1,7 +1,7 @@
 .header {
   width: 100%;
   height: 60px;
-  background-color: #0d6efd;
+  background-color: var(--primary-color);
   &_main {
     top: 0;
     position: fixed;
@@ -17,8 +17,13 @@
   }
   &__logo {
     height: 100%;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    a {
+      height: 100%;
+    }
     img {
-      width: 100%;
       height: 100%;
     }
   }
@@ -27,7 +32,6 @@
     margin-left: 40px;
     position: relative;
     img {
-      width: 100%;
       height: 100%;
     }
   }
@@ -36,9 +40,10 @@
     right: -25%;
     top: -33%;
     white-space: nowrap;
-    color: rgba(1, 0 , 2, .75);
+    color: var(--text-shade-75);
   }
   &__links {
+    margin-left: 10px;
     height: 100%;
     display: flex;
     align-items: center;
@@ -53,21 +58,27 @@
     }
   }
   &__menu-links {
-    padding-top: 6px;
-    padding-bottom: 2px;
-    // width: 200px;
-    width: auto;
-    overflow: hidden;
+    width: 600px;
+    // overflow: hidden;
     overflow-x: auto;
     &_desktop {
-      display: block;
+      text-align: end;
     }
     &_mobile {
       display: none;
+      margin: 0;
+      .container {
+        padding: 0;
+        display: flex;
+        align-items: center;
+        overflow: scroll;
+      }
+      .header__links {
+        margin: 0;
+      }
     }
     /* height */
     &::-webkit-scrollbar {
-      height: 6px;
       height: 4px;
     }
     /* Track */
@@ -86,8 +97,18 @@
   .active-type {
     color: #bfbfbf;
   }
+  @media (max-width: 425px) {
+    &__logo a {
+      height: 66%;
+    }
+    &__cart {
+      margin-left: 10px;
+    }
+    &__links a {
+      margin-left: 10px;
+    }
+  }
   @media (max-width: 768px) {
-    
     .header__menu-links {
       &_desktop {
         display: none;
@@ -99,7 +120,7 @@
         height: 40px;
         background-color: #fff;
         a {
-          color: rgba(1, 0 , 2, .75);
+          color: var(--text-shade-75);
           padding: 2px 8px;
         }
         .active-type {
@@ -110,6 +131,16 @@
       &::-webkit-scrollbar {
         height: 0;
       }
+    }
+  }
+  @media (max-width: 1199px) {
+    &__menu-links{
+      width: 520px;
+    }
+  }
+  @media (max-width: 991px) {
+    &__menu-links {
+      width: 300px;
     }
   }
 }

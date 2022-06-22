@@ -15,7 +15,7 @@
   transform: translate(-50%, -50%);
   width: 382px;
   min-height: 143px;
-  background: #F2F2F2;
+  background: var(--modal-bg-color);
   padding: 38px 38px 38px 38px;
   &__close {
     position: absolute;
@@ -23,7 +23,7 @@
     right: -40px;
     line-height: 21px;
     font-size: 41px;
-    color: rgba(1, 0, 2, .75);
+    color: var(--text-shade-75);
     cursor: pointer;
   }
   &__subtitle {
@@ -33,7 +33,7 @@
     font-size: 18px;
     line-height: 19px;
     text-align: center;
-    color: #0D0D0D;
+    color: var(--text-color);
   }
 
   &__desc {
@@ -43,7 +43,7 @@
     font-size: 14px;
     line-height: 14px;
     text-align: center;
-    color: #0D0D0D;
+    color: var(--text-color);
   }
   &__add-form {
     display: flex;
@@ -54,24 +54,24 @@
   }
   &__label-text {
     font-size: 14px;
-    color: rgba(1, 0 , 2, .75);
+    color: var(--text-shade-75);
   }
   &__input, &__textarea {
     width: 100%;
     font-size: 16px;
-    color: rgba(1, 0 , 2, .75);
+    color: var(--text-shade-75);
     padding: 13px 15px;
     background: #FFFFFF;
-    border: 1px solid rgba(1, 0 , 2, .50);
+    border: 1px solid var(--text-shade-50);
     border-radius: 4px;
     outline: none;
     resize: none;
     &:hover, &:focus, &:focus-visible {
-      border: 1px solid rgba(1, 0 , 2, 1);
+      border: 1px solid var(--text-color);
       border-radius: 4px;
     }
     &::placeholder {
-      color: rgba(1, 0 , 2, .25);
+      color: var(--text-shade-25);
     }
   }
   &__submit {
@@ -92,20 +92,20 @@
     font-size: 16px;
     border-radius: 4px;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    color: #0d6efd;
-    border-color: #0d6efd;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
     &:hover {
       &:not(:disabled) {
         color: #fff;
-        background-color: #0d6efd;
-        border-color: #0d6efd;
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
       }
     }
     &:focus {
       &:not(:disabled) {
-        border-color: #86b7fe;
+        border-color: var(--focus-color);
         outline: 0;
-        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        box-shadow: 0 0 0 0.25rem var(--focus-color);
       }
     }
     &:disabled {
@@ -113,20 +113,20 @@
       opacity: .5;
     }
     &_red {
-      color: #e50000;
-      border-color: #e50000;
+      color: var(--red-color);
+      border-color: var(--red-color);
       &:hover {
         &:not(:disabled) {
           color: #fff;
-          background-color: #e50000;
-          border-color: #e50000;
+          background-color: var(--red-color);
+          border-color: var(--red-color);
         }
       }
       &:focus {
         &:not(:disabled) {
-          border-color: #ef1414;
+          border-color: var(--red-focus-color);
           outline: 0;
-          box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+          box-shadow: 0 0 0 0.25rem var(--focus-color);
         }
       }
     }
@@ -146,12 +146,12 @@
     padding: 0.5rem 0;
     margin: 0;
     font-size: 1rem;
-    color: #212529;
+    color: var(--text-color);
     text-align: left;
     list-style: none;
     background-color: #fff;
     background-clip: padding-box;
-    border: 1px solid rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--text-shade-25);
     border-radius: 4px;
     transition: 1s;
     transform-style: flat;
@@ -165,7 +165,7 @@
     padding: 0.25rem 1rem;
     clear: both;
     font-weight: 400;
-    color: #212529;
+    color: var(--text-color);
     text-align: inherit;
     text-decoration: none;
     white-space: nowrap;
@@ -174,7 +174,7 @@
     cursor: pointer;
     &:hover, &:focus {
       outline: 0;
-      color: #1e2125;
+      color: var(--text-color);
       background-color: #e9ecef;
     }
   }

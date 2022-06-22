@@ -9,6 +9,18 @@ body {
   margin: 0;
 }
 
+:root {
+  --primary-color: #988a86;
+  --focus-color: #fbe1d7;
+  --text-color: #212529;
+  --text-shade-75: rgba(1, 0 , 2, .75);
+  --text-shade-50: rgba(1, 0 , 2, .5);
+  --text-shade-25: rgba(1, 0 , 2, .25);
+  --modal-bg-color: #F2F2F2;
+  --red-color: #e50000;
+  --red-focus-color: #ef1414;
+}
+
 .container {
   width: 100%;
   padding-right: 15px;

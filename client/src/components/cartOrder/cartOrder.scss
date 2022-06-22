@@ -6,24 +6,24 @@
   }
   &__label-text {
     font-size: 14px;
-    color: rgba(1, 0 , 2, .75);
+    color: var(--text-shade-75);
   }
   &__input, &__textarea {
     width: 100%;
     font-size: 16px;
-    color: rgba(1, 0 , 2, .75);
+    color: var(--text-shade-75);
     padding: 13px 15px;
     background: #FFFFFF;
-    border: 1px solid rgba(1, 0 , 2, .50);
+    border: 1px solid var(--text-shade-50);
     border-radius: 4px;
     outline: none;
     resize: none;
     &:hover, &:focus, &:focus-visible {
-      border: 1px solid rgba(1, 0 , 2, 1);
+      border: 1px solid var(--text-color);
       border-radius: 4px;
     }
     &::placeholder {
-      color: rgba(1, 0 , 2, .25);
+      color: var(--text-shade-25);
     }
     &_error {
       border-color: red;
@@ -51,20 +51,20 @@
     font-size: 16px;
     border-radius: 4px;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    color: #0d6efd;
-    border-color: #0d6efd;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
     &:hover {
       &:not(:disabled) {
         color: #fff;
-        background-color: #0d6efd;
-        border-color: #0d6efd;
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
       }
     }
     &:focus {
       &:not(:disabled) {
-        border-color: #86b7fe;
+        border-color: var(--focus-color);
         outline: 0;
-        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        box-shadow: 0 0 0 0.25rem var(--focus-color);
       }
     }
     &:disabled {

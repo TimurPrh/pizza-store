@@ -8,7 +8,6 @@ import { getMenuItems } from '../../http';
 import { clearCartAction } from '../../store/cartStore';
 import { resetStatusAction, setDoneAction, setErrorAction, setLoadingAction } from '../../store/orderingStore';
 import './cartOrder.scss'
-import { useState } from 'react';
 
 const CartOrder = () => {
   const navigate = useNavigate()
