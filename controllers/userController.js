@@ -2,7 +2,6 @@ const ApiError = require('../error/ApiError');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
 const db = require('../services/db')
-// const {User} = require('../models/models')
 
 const generateJwt = (id, login) => {
     return jwt.sign(

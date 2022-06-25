@@ -7,7 +7,7 @@ const MenuList = () => {
   const {menu, types} = useSelector(state => state.menuReducer)
   
   return (
-    <div className='menu-list'>
+    <section className='menu-list'>
       <div className='menu-list__header'>
         Наше меню
       </div>
@@ -18,7 +18,7 @@ const MenuList = () => {
           )}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

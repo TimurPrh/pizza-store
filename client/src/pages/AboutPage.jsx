@@ -1,4 +1,6 @@
 import React from 'react';
+import AboutContent from '../components/about Content/AboutContent';
+import Footer from '../components/footer/Footer';
 import Header from '../components/header/Header';
 
 const AboutPage = () => {
@@ -6,8 +8,9 @@ const AboutPage = () => {
     <div className="App">
       <Header />
       <div className='container'>
-        ABOUT PAGE
+        <AboutContent />
       </div>
+      <Footer />
     </div>
   );
 };

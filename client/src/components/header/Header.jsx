@@ -25,10 +25,7 @@ const Header = ({main}) => {
         const offset = linksWrapper.current.querySelector('.active-type').offsetLeft
         const linkWidth = linksWrapper.current.querySelector('.active-type').offsetWidth / 2
         const width = linksWrapper.current.clientWidth / 2
-        console.log('scroll to', offset - width + linkWidth);
         linksWrapper.current.scrollTo({ left: offset - width + linkWidth, behavior: 'smooth' });
-        // console.log('scroll 100');
-        // linksWrapper.current.scrollTo({ left: 100, behavior: 'smooth' });
       }
     }
   }, [activeType])

@@ -2,7 +2,7 @@ const ApiError = require('../error/ApiError');
 const { removeMenuGroupType, updateMenuGroupType, createMenuGroupType, getMenuGroupTypes } = require('../services/types');
 
 
-class MenuController {
+class MenuGroupTypeController {
   async getAll(req, res, next) {
     try {
       res.json(await getMenuGroupTypes());
@@ -44,4 +44,4 @@ class MenuController {
   }
 }
 
-module.exports = new MenuController()
+module.exports = new MenuGroupTypeController()

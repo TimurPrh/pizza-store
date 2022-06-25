@@ -47,7 +47,7 @@ const MainPage = () => {
   return (
     <>
       <Header main/>
-      <div className='container' onScroll={(e) => console.log('scroll')}>
+      <div className='container'>
         <MenuList />
       </div>
       <Footer />

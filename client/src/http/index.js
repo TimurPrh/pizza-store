@@ -94,7 +94,7 @@ const postMenuItem = async (data) => {
   }
 
 const postMenuCart = async (data) => {
-  const res = await fetch('http://localhost:3000/order/', {
+  const res = await fetch(`http://localhost:5000/api/order`, {
       method: 'POST',
       cache: 'no-cache',
       headers: {

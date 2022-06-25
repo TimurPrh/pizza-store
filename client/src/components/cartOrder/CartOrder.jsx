@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Formik } from "formik";
 import * as Yup from "yup";
 import MaskedInput from "react-text-mask";
-import { getMenuItems } from '../../http';
+import { getMenuItems, postMenuCart } from '../../http';
 import { clearCartAction } from '../../store/cartStore';
 import { resetStatusAction, setDoneAction, setErrorAction, setLoadingAction } from '../../store/orderingStore';
 import './cartOrder.scss'
@@ -27,7 +27,7 @@ const CartOrder = () => {
 
     dispatch(setLoadingAction())
     try {
-      const res = await getMenuItems()
+      const res = await postMenuCart(jsonObject)
       if (res) {
         console.log('ok')
         console.log(res)

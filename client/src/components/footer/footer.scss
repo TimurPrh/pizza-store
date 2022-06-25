@@ -1,6 +1,6 @@
 .footer {
   padding: 20px 0;
-  background-color: #0c0c0da3;
+  background-color: var(--primary-color);
   color: #ffffff;
   min-height: 400px;
   &__location {
