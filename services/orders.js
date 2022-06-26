@@ -7,6 +7,7 @@ const db = require("./db");
 //   comment varchar(1020),
 //   cart varchar(1020) NOT NULL,
 //   createdAt varchar(255),
+//   done boolean,
 
 //   PRIMARY KEY (id)
 // );
@@ -22,9 +23,9 @@ async function getOrders() {
 async function createOrder(order) {
   const result = await db.query(
     `INSERT INTO orders 
-    (name, phone, comment, cart, createdAt)
+    (name, phone, comment, cart, createdAt, done)
     VALUES 
-    ("${order.name}", "${order.phone}", "${order.comment}", "${order.order}", "${order.createdAt}")`
+    ("${order.name}", "${order.phone}", "${order.comment}", "${order.order}", "${order.createdAt}", "${order.done}")`
   );
 
   let message = "Error in creating order";

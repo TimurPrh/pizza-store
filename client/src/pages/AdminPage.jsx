@@ -1,7 +1,7 @@
 import React from 'react';
-import AdminMenuList from '../components/adminMenuList/AdminMenuList';
 import AdminModal from '../components/adminModal/AdminModal';
 import { useSelector } from 'react-redux';
+import AdminContent from '../components/adminContent/AdminContent';
 
 const AdminPage = () => {
 
@@ -16,7 +16,7 @@ const AdminPage = () => {
           null
       }
       <div className='container'>
-        <AdminMenuList />
+        <AdminContent />
       </div>
     </>
   );

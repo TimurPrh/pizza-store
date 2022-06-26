@@ -49,61 +49,6 @@
   }
 }
 
-.admin-menu-types {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  &__item {
-    margin-top: 20px;
-    width: 100%;
-    padding: 10px;
-    border: 1px solid var(--text-shade-75);
-    border-radius: 4px;
-    text-align: center;
-    cursor: pointer;
-  }
-  &__add {
-    margin-top: 20px;
-    display: block;
-    font-weight: 400;
-    line-height: 1.5;
-    text-align: center;
-    text-decoration: none;
-    vertical-align: middle;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-    background-color: transparent;
-    border: 1px solid transparent;
-    padding: 6px 12px;
-    font-size: 16px;
-    border-radius: 4px;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    color: var(--primary-color);
-    border-color: var(--primary-color);
-    &:hover {
-      &:not(:disabled) {
-        color: #fff;
-        background-color: var(--primary-color);
-        border-color: var(--primary-color);
-      }
-    }
-    &:focus {
-      &:not(:disabled) {
-        border-color: var(--focus-color);
-        outline: 0;
-        box-shadow: 0 0 0 0.25rem var(--focus-color);
-      }
-    }
-    &:disabled {
-      cursor: unset;
-      opacity: .5;
-    }
-  }
-}
-
 .admin-menu-list {
   margin-top: 20px;
 
@@ -145,7 +90,7 @@
   // width: 250px;
   width: 22.5%;
   height: 310px;
-  // border: 1px solid var(--text-shade-75);
+  // border: 1px solid var(--dark-shade-75);
   border-radius: 5%;
   display: flex;
   flex-direction: column;
@@ -160,7 +105,7 @@
     width: 100%;
   }
   &:hover {
-    box-shadow: 0 0 5px var(--text-shade-75);
+    box-shadow: 0 0 5px var(--dark-shade-75);
   }
   &__img {
     display: flex;
@@ -181,7 +126,7 @@
   &__description {
     margin-top: 5px;
     font-size: 14px;
-    color: var(--text-shade-75);
+    color: var(--dark-shade-75);
   }
   &__bottom-wrapper {
     display: flex;

@@ -5,7 +5,7 @@
   grid-template-columns: 60px auto 98px;
   align-items: center;
   padding: 6px 10px;
-  border: 1px solid var(--text-shade-75);
+  border: 1px solid var(--dark-shade-75);
   border-radius: 5px;
   &:first-child {
     margin-top: 0;
@@ -42,7 +42,7 @@
   &__description {
     margin-top: 5px;
     font-size: 14px;
-    color: var(--text-shade-75);
+    color: var(--dark-shade-75);
   }
   &__quantity {
     display: flex;
@@ -52,7 +52,7 @@
   &__minus, &__plus {
     width: 34px;
     height: 34px;
-    border: 1px solid var(--text-shade-75);
+    border: 1px solid var(--dark-shade-75);
     border-radius: 50%;
     cursor: pointer;
     position: relative;
@@ -66,7 +66,7 @@
     &::before {
       position: absolute;
       content: '';
-      background-color: var(--text-shade-75);
+      background-color: var(--dark-shade-75);
       width: 14px;
       height: 1px;
       top: 50%;
@@ -78,7 +78,7 @@
     &::before {
       position: absolute;
       content: '';
-      background-color: var(--text-shade-75);
+      background-color: var(--dark-shade-75);
       width: 14px;
       height: 1px;
       top: 50%;
@@ -88,7 +88,7 @@
     &::after {
       position: absolute;
       content: '';
-      background-color: var(--text-shade-75);
+      background-color: var(--dark-shade-75);
       width: 1px;
       height: 14px;
       top: 50%;

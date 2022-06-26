@@ -1,6 +1,5 @@
 const ApiError = require('../error/ApiError');
 const { createOrder, removeOrder, getOrders } = require('../services/orders');
-// const { removeMenuGroupType, updateMenuGroupType, createMenuGroupType, getMenuGroupTypes } = require('../services/types');
 
 class OrderController {
   async getAll(req, res, next) {
@@ -13,7 +12,6 @@ class OrderController {
 
   async create(req, res, next) {
     try {
-      console.group('create order')
       const formattedOrder = req.body.order.map(item => {
         const newItem = {}
         newItem.id = item.id
@@ -26,8 +24,7 @@ class OrderController {
       const body = req.body
       body.order = JSON.stringify(formattedOrder).replace(/"/g, '')
       body.createdAt = new Date().toISOString();
-      console.log(body)
-      console.groupEnd()
+      body.done = 0
       const order = await createOrder(body)
       return res.json(order)
     } catch (e) {

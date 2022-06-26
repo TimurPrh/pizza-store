@@ -23,7 +23,7 @@
     right: -40px;
     line-height: 21px;
     font-size: 41px;
-    color: var(--text-shade-75);
+    color: var(--dark-shade-75);
     cursor: pointer;
   }
   &__subtitle {
@@ -54,15 +54,15 @@
   }
   &__label-text {
     font-size: 14px;
-    color: var(--text-shade-75);
+    color: var(--dark-shade-75);
   }
   &__input, &__textarea {
     width: 100%;
     font-size: 16px;
-    color: var(--text-shade-75);
+    color: var(--dark-shade-75);
     padding: 13px 15px;
     background: #FFFFFF;
-    border: 1px solid var(--text-shade-50);
+    border: 1px solid var(--dark-shade-50);
     border-radius: 4px;
     outline: none;
     resize: none;
@@ -71,7 +71,7 @@
       border-radius: 4px;
     }
     &::placeholder {
-      color: var(--text-shade-25);
+      color: var(--dark-shade-25);
     }
   }
   &__submit {
@@ -151,7 +151,7 @@
     list-style: none;
     background-color: #fff;
     background-clip: padding-box;
-    border: 1px solid var(--text-shade-25);
+    border: 1px solid var(--dark-shade-25);
     border-radius: 4px;
     transition: 1s;
     transform-style: flat;
