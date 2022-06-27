@@ -8,6 +8,7 @@ const authMiddleware = require('../middleware/authMiddleware')
 // router.delete('/:id', authMiddleware, menuController.destroy)
 router.get('/', orderController.getAll)
 router.post('/', orderController.create)
+router.put('/:id', orderController.changeOption)
 router.delete('/:id', orderController.destroy)
 
 module.exports = router

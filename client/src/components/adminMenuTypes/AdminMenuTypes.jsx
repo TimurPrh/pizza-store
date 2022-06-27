@@ -1,8 +1,10 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setAdminAddTypeAction, setAdminChangeTypeAction } from '../../store/adminAddingStore';
 import './adminMenuTypes.scss'
 
-const AdminMenuTypes = ({types}) => {
+const AdminMenuTypes = () => {
+  const { types } = useSelector(state => state.adminContentReducer)
+
   const dispatch = useDispatch()
 
   const addType = () => {

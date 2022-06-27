@@ -102,6 +102,21 @@ const getOrders = async () => {
   return await res.json();
 }
 
+const putDone = async (id, done) => {
+  const res = await fetch(`http://localhost:5000/api/order/${id}`, {
+    method: 'PUT',
+    cache: 'no-cache',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ done })
+  });
+  if (!res.ok) {
+    throw new Error(`Could not fetch, status: ${res.status}`);
+  }
+  return await res.json();
+}
+
 const postMenuCart = async (data) => {
   const res = await fetch(`http://localhost:5000/api/order`, {
     method: 'POST',
@@ -110,6 +125,20 @@ const postMenuCart = async (data) => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(data)
+  });
+  if (!res.ok) {
+    throw new Error(`Could not fetch, status: ${res.status}`);
+  }
+  return await res.json();
+}
+
+const deleteOrder = async (id) => {
+  const res = await fetch(`http://localhost:5000/api/order/${id}`, {
+    method: 'DELETE',
+    cache: 'no-cache',
+    headers: {
+      'Content-Type': 'application/json'
+    }
   });
   if (!res.ok) {
     throw new Error(`Could not fetch, status: ${res.status}`);
@@ -127,5 +156,7 @@ export {
   changeMenuItem,
   deleteMenuItem,
   getOrders,
-  postMenuCart
+  putDone,
+  postMenuCart,
+  deleteOrder
 }

@@ -7,13 +7,13 @@ const OrdersList = () => {
 
   const [orders, setOrders] = useState([])
 
-  useEffect(() => {
-    const fetchOrders = async () => {
-      const fetched = await getOrders()
+  const fetchOrders = async () => {
+    const fetched = await getOrders()
 
-      setOrders(fetched)
-    }
-    
+    setOrders(fetched)
+  }
+
+  useEffect(() => {
     fetchOrders()
   }, [])
 
@@ -30,10 +30,10 @@ const OrdersList = () => {
               <th>Комментарий</th>
               <th>Заказ</th>
               <th>Цена</th>
-              <th>Выполнен</th>
+              <th>Действие</th>
             </tr>
             {orders.map(order => 
-              <OrderListItem key={order.id} order={order} />
+              <OrderListItem key={order.id} order={order} fetchOrders={fetchOrders}/>
             )}
           </tbody>
         </table>

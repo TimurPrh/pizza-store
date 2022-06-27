@@ -1,5 +1,5 @@
 const ApiError = require('../error/ApiError');
-const { createOrder, removeOrder, getOrders } = require('../services/orders');
+const { createOrder, removeOrder, getOrders, changeDone } = require('../services/orders');
 
 class OrderController {
   async getAll(req, res, next) {
@@ -26,6 +26,19 @@ class OrderController {
       body.createdAt = new Date().toISOString();
       body.done = 0
       const order = await createOrder(body)
+      return res.json(order)
+    } catch (e) {
+      next(ApiError.badRequest(e.message))
+    }
+  }
+
+  async changeOption(req, res, next) {
+    try {
+      const { id } = req.params
+      let { done } = req.body
+
+      const order = await changeDone(id, done)
+
       return res.json(order)
     } catch (e) {
       next(ApiError.badRequest(e.message))

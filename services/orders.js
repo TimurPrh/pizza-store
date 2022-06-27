@@ -14,7 +14,7 @@ const db = require("./db");
 
 async function getOrders() {
   const result = await db.query(
-    `SELECT * FROM orders`
+    `SELECT * FROM orders ORDER BY id DESC`
   );
 
   return result
@@ -37,6 +37,22 @@ async function createOrder(order) {
   return { message };
 }
 
+async function changeDone(id, done) {
+  const result = await db.query(
+    `UPDATE orders 
+    SET done = ${done}
+    WHERE id = ${id}`
+  );
+
+  let message = "Error in changing order";
+
+  if (result.affectedRows) {
+    message = "Order changed successfully";
+  }
+
+  return { result, message };
+}
+
 async function removeOrder(id) {
   const result = await db.query(
     `DELETE FROM orders WHERE id=${id}`
@@ -48,7 +64,7 @@ async function removeOrder(id) {
     message = "Order deleted successfully";
   }
 
-  return { message };
+  return { result, message };
 }
 
-module.exports = {getOrders, createOrder, removeOrder}
+module.exports = {getOrders, createOrder, changeDone, removeOrder}

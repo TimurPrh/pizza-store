@@ -1,0 +1,48 @@
+@import '../../styles/mixins.scss';
+
+.order-list-item {
+  background-color: var(--dark-shade-10);
+  &_done {
+    background-color: var(--light-green-color);
+
+  }
+  &__cart {
+    border-spacing: 0;
+    margin: 4px auto;
+  }
+  &__cart-tr:nth-child(even) {
+    background-color: var(--dark-shade-10);
+  }
+  &__done {
+    @include checkbox;
+    margin-bottom: 10px;
+  }
+  &__delete {
+    margin: 6px auto;
+    position: relative;
+    width: 24px;
+    height: 24px;
+    
+    cursor: pointer;
+    &::before {
+      position: absolute;
+      content: '';
+      top: 50%;
+      left: 0%;
+      width: 100%;
+      height: 2px;
+      transform: rotate(-45deg) translate(0%, 0%);
+      background-color: red;
+    }
+    &::after {
+      position: absolute;
+      content: '';
+      top: 50%;
+      left: 0%;
+      width: 100%;
+      height: 2px;
+      transform: rotate(45deg) translate(0%, 0%);
+      background-color: red;
+    }
+  }
+}
