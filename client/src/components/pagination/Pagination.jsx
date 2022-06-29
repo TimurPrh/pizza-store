@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchList } from "../../http";
-import { setActivePageAction, addListAction, setDoneAction, setErrorAction, setLoadingAction } from "../../store/tableReducer";
+import { setActivePageAction } from "../../store/adminContentStore";
 import './pagination.scss'
 
 const Pagination = () => {
   const [pages, setPages] = useState([])
   const [pagesCount, setPagesCount] = useState(0)
 
-  const { limit, count, activePage } = useSelector(state => state.tableReducer)
+  const { limit, count, activePage } = useSelector(state => state.adminContentReducer)
 
   const dispatch = useDispatch()
 

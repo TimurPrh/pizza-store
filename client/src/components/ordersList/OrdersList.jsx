@@ -1,21 +1,35 @@
 import { useState, useEffect } from 'react';
-import { getOrders } from '../../http';
+import { useDispatch, useSelector } from 'react-redux';
+import { getOrders, getOrdersIds } from '../../http';
+import { setPageCountAction } from '../../store/adminContentStore';
 import OrderListItem from '../orderListItem/OrderListItem';
+import Pagination from '../pagination/Pagination';
 import './ordersList.scss'
 
 const OrdersList = () => {
 
   const [orders, setOrders] = useState([])
 
+  const dispatch = useDispatch()
+
+  const { limit, activePage } = useSelector(state => state.adminContentReducer)
+
   const fetchOrders = async () => {
-    const fetched = await getOrders()
+    console.group('fetch orders')
+    const fetched = await getOrders(limit, activePage)
+    const ids = await getOrdersIds()
+
+    dispatch(setPageCountAction(ids.length))
 
     setOrders(fetched)
+    console.log(fetched)
+    console.log(ids)
+    console.groupEnd()
   }
 
   useEffect(() => {
     fetchOrders()
-  }, [])
+  }, [activePage])
 
   return (
     <div className='orders-list'>
@@ -38,6 +52,9 @@ const OrdersList = () => {
           </tbody>
         </table>
       }
+      <div className="orders-list__pagination">
+        <Pagination />
+      </div>
     </div>
   );
 };

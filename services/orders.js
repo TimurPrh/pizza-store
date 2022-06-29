@@ -12,9 +12,17 @@ const db = require("./db");
 //   PRIMARY KEY (id)
 // );
 
-async function getOrders() {
+async function getOrders(limit, offset) {
   const result = await db.query(
-    `SELECT * FROM orders ORDER BY id DESC`
+    `SELECT * FROM orders ORDER BY id DESC limit ${limit} offset ${offset}`
+  );
+
+  return result
+}
+
+async function getOrdersIds() {
+  const result = await db.query(
+    `SELECT id FROM orders`
   );
 
   return result
@@ -67,4 +75,4 @@ async function removeOrder(id) {
   return { result, message };
 }
 
-module.exports = {getOrders, createOrder, changeDone, removeOrder}
+module.exports = {getOrders, getOrdersIds, createOrder, changeDone, removeOrder}

@@ -1,10 +1,24 @@
 const ApiError = require('../error/ApiError');
-const { createOrder, removeOrder, getOrders, changeDone } = require('../services/orders');
+const { createOrder, removeOrder, getOrders, changeDone, getOrdersIds } = require('../services/orders');
 
 class OrderController {
   async getAll(req, res, next) {
     try {
-      res.json(await getOrders());
+      let {limit, page} = req.query
+
+      page = page || 1
+      limit = limit || 3
+      let offset = page * limit - limit
+
+      res.json(await getOrders(limit, offset));
+    } catch (e) {
+      next(ApiError.badRequest(e.message))
+    }
+  }
+
+  async getCount(req, res, next) {
+    try {
+      res.json(await getOrdersIds());
     } catch (e) {
       next(ApiError.badRequest(e.message))
     }

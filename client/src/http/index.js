@@ -94,8 +94,16 @@ const deleteMenuItem = async (id) => {
   return await res.json();
 }
 
-const getOrders = async () => {
-  const res = await fetch('http://localhost:5000/api/order');
+const getOrders = async (limit, page) => {
+  const res = await fetch(`http://localhost:5000/api/order?limit=${limit}&page=${page}`);
+  if (!res.ok) {
+      throw new Error(`Could not fetch, status: ${res.status}`);
+  }
+  return await res.json();
+}
+
+const getOrdersIds = async () => {
+  const res = await fetch('http://localhost:5000/api/order/count');
   if (!res.ok) {
       throw new Error(`Could not fetch, status: ${res.status}`);
   }
@@ -156,6 +164,7 @@ export {
   changeMenuItem,
   deleteMenuItem,
   getOrders,
+  getOrdersIds,
   putDone,
   postMenuCart,
   deleteOrder
