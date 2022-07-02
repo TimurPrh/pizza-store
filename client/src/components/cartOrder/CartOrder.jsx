@@ -144,7 +144,6 @@ const CartOrder = () => {
               className='cart-order__submit'
               type='submit'
               disabled={props.isSubmitting}
-              // onClick={order}
             >
               Оформить
             </button>

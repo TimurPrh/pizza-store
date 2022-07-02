@@ -1,16 +1,33 @@
 @import '../../styles/mixins.scss';
 
-.cart-order {
+.login-content {
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  &__header {
+    text-align: center;
+    margin: 20px auto;
+  }
+  &__auth {
+    width: 382px;
+    min-height: 143px;
+    background: var(--modal-bg-color);
+    padding: 38px 38px 38px 38px;
+    @media (max-width: 425px) {
+      width: 90%;
+    }
+  }
   &__label {
     margin-top: 10px;
+    display: inline-block;
+    width: 100%;
   }
   &__label-text {
-    font-size: 14px;
+    font-size: 16px;
     color: var(--dark-shade-75);
   }
-  &__input, &__textarea {
+  &__input {
     width: 100%;
     font-size: 16px;
     color: var(--dark-shade-75);
@@ -38,5 +55,6 @@
   &__submit {
     @include button;
     margin-top: 10px;
+    width: 100%;
   }
 }

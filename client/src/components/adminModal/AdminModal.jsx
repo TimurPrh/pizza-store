@@ -10,7 +10,7 @@ const AdminModal = () => {
   const addingStatus = useSelector(state => state.adminAddingReducer.status)
   const addingType = useSelector(state => state.adminAddingReducer.type)
   const addingMenuItem = useSelector(state => state.adminAddingReducer.menuItem)
-  // const availableTypes = useSelector(state => state.adminAddingReducer.availableTypes)
+  const addingErrorMessage = useSelector(state => state.adminAddingReducer.errorMessage)
 
   const modalRef = useRef(null)
   const form = useRef(null)
@@ -48,8 +48,8 @@ const AdminModal = () => {
       }
       
     } catch(e) {
-      console.log(e)
-      dispatch(setAdminErrorAction())
+      console.log(e.log)
+      dispatch(setAdminErrorAction(e.res.message))
     }
     console.groupEnd()
   }
@@ -77,8 +77,8 @@ const AdminModal = () => {
         }, 5000)
       }
     } catch(e) {
-      console.log(e)
-      dispatch(setAdminErrorAction())
+      console.log(e.log)
+      dispatch(setAdminErrorAction(e.res.message))
     }
     console.groupEnd()
   }
@@ -101,8 +101,8 @@ const AdminModal = () => {
         }, 5000)
       }
     } catch(e) {
-      console.log(e)
-      dispatch(setAdminErrorAction())
+      console.log(e.log)
+      dispatch(setAdminErrorAction(e.res.message))
     }
     console.groupEnd()
   }
@@ -128,8 +128,8 @@ const AdminModal = () => {
       }
       
     } catch(e) {
-      console.log(e)
-      dispatch(setAdminErrorAction())
+      console.log(e.log)
+      dispatch(setAdminErrorAction(e.res.message))
     }
     console.groupEnd()
   }
@@ -140,9 +140,6 @@ const AdminModal = () => {
     console.group('change type')
     let formData = new FormData(form.current)
     formData.set('id', addingMenuItem.id)
-
-    // const name = formData.get('name')
-    // const type = formData.get('type')
 
     dispatch(setAdminLoadingAction())
     try {
@@ -158,8 +155,8 @@ const AdminModal = () => {
         }, 5000)
       }
     } catch(e) {
-      console.log(e)
-      dispatch(setAdminErrorAction())
+      console.log(e.log)
+      dispatch(setAdminErrorAction(e.res.message))
     }
     console.groupEnd()
   }
@@ -182,8 +179,8 @@ const AdminModal = () => {
         }, 5000)
       }
     } catch(e) {
-      console.log(e)
-      dispatch(setAdminErrorAction())
+      console.log(e.log)
+      dispatch(setAdminErrorAction(e.res.message))
     }
     console.groupEnd()
   }
@@ -272,7 +269,7 @@ const AdminModal = () => {
       message = (
         <>
           <div className="admin-modal__subtitle">Ошибка!</div>
-          <div className="admin-modal__desc">Произошла ошибка, Попробуйте позднее!</div>
+          <div className="admin-modal__desc">{addingErrorMessage ? addingErrorMessage : 'Попробуйте позднее'}</div>
         </>
       )
       break;

@@ -7,13 +7,6 @@ const db = require("./db");
 //   PRIMARY KEY (id)
 // );
 
-// CREATE TABLE users (
-//   id int NOT NULL AUTO_INCREMENT,
-//   login varchar(255) NOT NULL UNIQUE,
-//   password varchar(255) NOT NULL,
-//   PRIMARY KEY (id)
-// );
-
 async function getMenuGroupTypes() {
   const result = await db.query(
     `SELECT * FROM types`

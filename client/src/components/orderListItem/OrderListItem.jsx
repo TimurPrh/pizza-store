@@ -10,16 +10,22 @@ const OrderListItem = ({order, fetchOrders}) => {
 
   const handleDoneCheck = async (e) => {
     const checked = e.target.checked ? 1 : 0
-    await putDone(order.id, checked)
+    try {
+      await putDone(order.id, checked)
+    } catch (e) {
+      console.log(e.log)
+      alert(e.res.message)
+    }
     fetchOrders()
-    
-    // if (res.result.changedRows === 1) {
-    //   setDoneChecked(checked)
-    // }
   }
 
   const handleDeleteOrder = async () => {
-    await deleteOrder(order.id)
+    try {
+      await deleteOrder(order.id)
+    } catch (e) {
+      console.log(e.log)
+      alert(e.res.message)
+    }
     fetchOrders()
   }
 

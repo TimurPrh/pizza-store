@@ -1,10 +1,9 @@
 @import '../../styles/mixins.scss';
 
 .order-list-item {
-  background-color: var(--dark-shade-10);
+  // background-color: var(--dark-shade-10);
   &_done {
     background-color: var(--light-green-color);
-
   }
   &__cart {
     border-spacing: 0;

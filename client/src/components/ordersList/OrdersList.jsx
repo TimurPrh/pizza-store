@@ -15,16 +15,12 @@ const OrdersList = () => {
   const { limit, activePage } = useSelector(state => state.adminContentReducer)
 
   const fetchOrders = async () => {
-    console.group('fetch orders')
     const fetched = await getOrders(limit, activePage)
     const ids = await getOrdersIds()
 
     dispatch(setPageCountAction(ids.length))
 
     setOrders(fetched)
-    console.log(fetched)
-    console.log(ids)
-    console.groupEnd()
   }
 
   useEffect(() => {
@@ -33,6 +29,9 @@ const OrdersList = () => {
 
   return (
     <div className='orders-list'>
+      <div className="orders-list__pagination">
+        <Pagination />
+      </div>
       {
         orders.length > 0 && 
         <table className='orders-table'>
@@ -52,9 +51,6 @@ const OrdersList = () => {
           </tbody>
         </table>
       }
-      <div className="orders-list__pagination">
-        <Pagination />
-      </div>
     </div>
   );
 };

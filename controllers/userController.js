@@ -1,7 +1,7 @@
 const ApiError = require('../error/ApiError');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
-const db = require('../services/db')
+const { findUser } = require('../services/users');
 
 const generateJwt = (id, login) => {
     return jwt.sign(
@@ -14,9 +14,8 @@ const generateJwt = (id, login) => {
 class UserController {
     async login(req, res, next) {
         const {login, password} = req.body
-        const reply = await db.query(
-          `SELECT * FROM users WHERE login="${login}"`
-        )
+
+        const reply = await findUser(login)
         const user = reply[0]
         if (!user) {
             return next(ApiError.internal('Пользователь не найден'))

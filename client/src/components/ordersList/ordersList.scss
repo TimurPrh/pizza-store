@@ -1,8 +1,10 @@
 .orders-list {
   margin-top: 20px;
+  overflow: auto;
 }
 
 .orders-table {
+  margin-top: 20px;
   width: 100%;
   display: table;
   border-collapse: collapse;

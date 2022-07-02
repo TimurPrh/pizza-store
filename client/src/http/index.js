@@ -1,3 +1,9 @@
+function CustomFetchException({log, res}) {
+  this.log = log
+  this.res = res
+  this.name = "Исключение, ошибка fetch"
+}
+
 const getMenuTypes = async () => {
   const res = await fetch('http://localhost:5000/api/type');
   if (!res.ok) {
@@ -7,45 +13,51 @@ const getMenuTypes = async () => {
 }
 
 const postMenuType = async (data) => {
+  const token = localStorage.getItem('token')
   const res = await fetch('http://localhost:5000/api/type', {
     method: 'POST',
     cache: 'no-cache',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'authorization': `Bearer ${token}`
     },
     body: JSON.stringify(data)
   });
   if (!res.ok) {
-    throw new Error(`Could not fetch, status: ${res.status}`);
+    throw new CustomFetchException({log: `Could not fetch, status: ${res.status}`, res: await res.json()})
   }
   return await res.json();
 }
 
 const changeMenuType = async (id, data) => {
+  const token = localStorage.getItem('token')
   const res = await fetch(`http://localhost:5000/api/type/${id}`, {
     method: 'PUT',
     cache: 'no-cache',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'authorization': `Bearer ${token}`
     },
     body: JSON.stringify(data)
   });
   if (!res.ok) {
-    throw new Error(`Could not fetch, status: ${res.status}`);
+    throw new CustomFetchException({log: `Could not fetch, status: ${res.status}`, res: await res.json()})
   }
   return await res.json();
 }
 
 const deleteMenuType = async (id) => {
+  const token = localStorage.getItem('token')
   const res = await fetch(`http://localhost:5000/api/type/${id}`, {
     method: 'DELETE',
     cache: 'no-cache',
     headers: {
-        'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'authorization': `Bearer ${token}`
     }
   });
   if (!res.ok) {
-    throw new Error(`Could not fetch, status: ${res.status}`);
+    throw new CustomFetchException({log: `Could not fetch, status: ${res.status}`, res: await res.json()})
   }
   return await res.json();
 }
@@ -59,37 +71,47 @@ const getMenuItems = async () => {
 }
 
 const postMenuItem = async (data) => {
+  const token = localStorage.getItem('token')
   const res = await fetch('http://localhost:5000/api/menu', {
     method: 'POST',
+    headers: {
+      'authorization': `Bearer ${token}`
+    },
     body: data
   });
   if (!res.ok) {
-    throw new Error(`Could not fetch, status: ${res.status}`);
+    throw new CustomFetchException({log: `Could not fetch, status: ${res.status}`, res: await res.json()})
   }
   return await res.json();
 }
   
 const changeMenuItem = async (data) => {
+  const token = localStorage.getItem('token')
   const res = await fetch(`http://localhost:5000/api/menu`, {
       method: 'PUT',
+      headers: {
+        'authorization': `Bearer ${token}`
+      },
       body: data
   });
   if (!res.ok) {
-      throw new Error(`Could not fetch, status: ${res.status}`);
+    throw new CustomFetchException({log: `Could not fetch, status: ${res.status}`, res: await res.json()})
   }
   return await res.json();
 }
 
 const deleteMenuItem = async (id) => {
+  const token = localStorage.getItem('token')
   const res = await fetch(`http://localhost:5000/api/menu/${id}`, {
     method: 'DELETE',
     cache: 'no-cache',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'authorization': `Bearer ${token}`
     }
   });
   if (!res.ok) {
-    throw new Error(`Could not fetch, status: ${res.status}`);
+    throw new CustomFetchException({log: `Could not fetch, status: ${res.status}`, res: await res.json()})
   }
   return await res.json();
 }
@@ -110,21 +132,6 @@ const getOrdersIds = async () => {
   return await res.json();
 }
 
-const putDone = async (id, done) => {
-  const res = await fetch(`http://localhost:5000/api/order/${id}`, {
-    method: 'PUT',
-    cache: 'no-cache',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ done })
-  });
-  if (!res.ok) {
-    throw new Error(`Could not fetch, status: ${res.status}`);
-  }
-  return await res.json();
-}
-
 const postMenuCart = async (data) => {
   const res = await fetch(`http://localhost:5000/api/order`, {
     method: 'POST',
@@ -140,17 +147,48 @@ const postMenuCart = async (data) => {
   return await res.json();
 }
 
+const putDone = async (id, done) => {
+  const token = localStorage.getItem('token')
+  const res = await fetch(`http://localhost:5000/api/order/${id}`, {
+    method: 'PUT',
+    cache: 'no-cache',
+    headers: {
+      'Content-Type': 'application/json',
+      'authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify({ done })
+  });
+  if (!res.ok) {
+    throw new CustomFetchException({log: `Could not fetch, status: ${res.status}`, res: await res.json()})
+  }
+  return await res.json();
+}
+
 const deleteOrder = async (id) => {
+  const token = localStorage.getItem('token')
   const res = await fetch(`http://localhost:5000/api/order/${id}`, {
     method: 'DELETE',
     cache: 'no-cache',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'authorization': `Bearer ${token}`
     }
   });
   if (!res.ok) {
-    throw new Error(`Could not fetch, status: ${res.status}`);
+    throw new CustomFetchException({log: `Could not fetch, status: ${res.status}`, res: await res.json()})
   }
+  return await res.json();
+}
+
+const postLogin = async (data) => {
+  const res = await fetch('http://localhost:5000/api/user/login', {
+    method: 'POST',
+    cache: 'no-cache',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  });
   return await res.json();
 }
 
@@ -167,5 +205,6 @@ export {
   getOrdersIds,
   putDone,
   postMenuCart,
-  deleteOrder
+  deleteOrder,
+  postLogin
 }
