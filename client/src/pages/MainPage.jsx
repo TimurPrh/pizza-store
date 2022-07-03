@@ -24,8 +24,7 @@ const MainPage = () => {
       try {
         const checkNotEmpty = (type) => {
           const index = menu.rows.findIndex(item => item.typeid === type.id)
-          // return typeof menu.rows[index] !== 'undefined'
-          return true
+          return typeof menu.rows[index] !== 'undefined'
         }
         
         const allTypes = await getMenuTypes()

@@ -5,7 +5,7 @@ function CustomFetchException({log, res}) {
 }
 
 const getMenuTypes = async () => {
-  const res = await fetch('http://localhost:5000/api/type');
+  const res = await fetch(`${process.env.REACT_APP_API_URL}api/type`);
   if (!res.ok) {
     throw new Error(`Could not fetch, status: ${res.status}`);
   }
@@ -14,7 +14,7 @@ const getMenuTypes = async () => {
 
 const postMenuType = async (data) => {
   const token = localStorage.getItem('token')
-  const res = await fetch('http://localhost:5000/api/type', {
+  const res = await fetch(`${process.env.REACT_APP_API_URL}api/type`, {
     method: 'POST',
     cache: 'no-cache',
     headers: {
@@ -31,7 +31,7 @@ const postMenuType = async (data) => {
 
 const changeMenuType = async (id, data) => {
   const token = localStorage.getItem('token')
-  const res = await fetch(`http://localhost:5000/api/type/${id}`, {
+  const res = await fetch(`${process.env.REACT_APP_API_URL}api/type/${id}`, {
     method: 'PUT',
     cache: 'no-cache',
     headers: {
@@ -48,7 +48,7 @@ const changeMenuType = async (id, data) => {
 
 const deleteMenuType = async (id) => {
   const token = localStorage.getItem('token')
-  const res = await fetch(`http://localhost:5000/api/type/${id}`, {
+  const res = await fetch(`${process.env.REACT_APP_API_URL}api/type/${id}`, {
     method: 'DELETE',
     cache: 'no-cache',
     headers: {
@@ -63,7 +63,7 @@ const deleteMenuType = async (id) => {
 }
 
 const getMenuItems = async () => {
-  const res = await fetch('http://localhost:5000/api/menu');
+  const res = await fetch(`${process.env.REACT_APP_API_URL}api/menu`);
   if (!res.ok) {
     throw new Error(`Could not fetch, status: ${res.status}`);
   }
@@ -72,7 +72,7 @@ const getMenuItems = async () => {
 
 const postMenuItem = async (data) => {
   const token = localStorage.getItem('token')
-  const res = await fetch('http://localhost:5000/api/menu', {
+  const res = await fetch(`${process.env.REACT_APP_API_URL}api/menu`, {
     method: 'POST',
     headers: {
       'authorization': `Bearer ${token}`
@@ -87,7 +87,7 @@ const postMenuItem = async (data) => {
   
 const changeMenuItem = async (data) => {
   const token = localStorage.getItem('token')
-  const res = await fetch(`http://localhost:5000/api/menu`, {
+  const res = await fetch(`${process.env.REACT_APP_API_URL}api/menu`, {
       method: 'PUT',
       headers: {
         'authorization': `Bearer ${token}`
@@ -102,7 +102,7 @@ const changeMenuItem = async (data) => {
 
 const deleteMenuItem = async (id) => {
   const token = localStorage.getItem('token')
-  const res = await fetch(`http://localhost:5000/api/menu/${id}`, {
+  const res = await fetch(`${process.env.REACT_APP_API_URL}api/menu/${id}`, {
     method: 'DELETE',
     cache: 'no-cache',
     headers: {
@@ -117,7 +117,7 @@ const deleteMenuItem = async (id) => {
 }
 
 const getOrders = async (limit, page) => {
-  const res = await fetch(`http://localhost:5000/api/order?limit=${limit}&page=${page}`);
+  const res = await fetch(`${process.env.REACT_APP_API_URL}api/order?limit=${limit}&page=${page}`);
   if (!res.ok) {
       throw new Error(`Could not fetch, status: ${res.status}`);
   }
@@ -125,7 +125,7 @@ const getOrders = async (limit, page) => {
 }
 
 const getOrdersIds = async () => {
-  const res = await fetch('http://localhost:5000/api/order/count');
+  const res = await fetch(`${process.env.REACT_APP_API_URL}api/order/count`);
   if (!res.ok) {
       throw new Error(`Could not fetch, status: ${res.status}`);
   }
@@ -133,7 +133,7 @@ const getOrdersIds = async () => {
 }
 
 const postMenuCart = async (data) => {
-  const res = await fetch(`http://localhost:5000/api/order`, {
+  const res = await fetch(`${process.env.REACT_APP_API_URL}api/order`, {
     method: 'POST',
     cache: 'no-cache',
     headers: {
@@ -149,7 +149,7 @@ const postMenuCart = async (data) => {
 
 const putDone = async (id, done) => {
   const token = localStorage.getItem('token')
-  const res = await fetch(`http://localhost:5000/api/order/${id}`, {
+  const res = await fetch(`${process.env.REACT_APP_API_URL}api/order/${id}`, {
     method: 'PUT',
     cache: 'no-cache',
     headers: {
@@ -166,7 +166,7 @@ const putDone = async (id, done) => {
 
 const deleteOrder = async (id) => {
   const token = localStorage.getItem('token')
-  const res = await fetch(`http://localhost:5000/api/order/${id}`, {
+  const res = await fetch(`${process.env.REACT_APP_API_URL}api/order/${id}`, {
     method: 'DELETE',
     cache: 'no-cache',
     headers: {
@@ -181,7 +181,7 @@ const deleteOrder = async (id) => {
 }
 
 const postLogin = async (data) => {
-  const res = await fetch('http://localhost:5000/api/user/login', {
+  const res = await fetch(`${process.env.REACT_APP_API_URL}api/user/login`, {
     method: 'POST',
     cache: 'no-cache',
     headers: {
@@ -189,6 +189,8 @@ const postLogin = async (data) => {
     },
     body: JSON.stringify(data)
   });
+  console.log('res')
+  console.log(res)
   return await res.json();
 }
 
